@@ -3,14 +3,17 @@ const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("loginEmail").value;
+  // OJO: El backend espera 'username', no 'email'.
+  // Usamos el valor del campo email como username para que coincida con el backend.
+  const username = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
 
-  const data = { email, password };
+  const data = { username, password };
 
   try {
-    // Aquí usamos la URL exacta que te dio tu compañero
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    // CAMBIO IMPORTANTE: Usamos ruta relativa "/api/..." en lugar de "http://localhost..."
+    // Esto asegura que funcione tanto en tu compu como cuando lo subas a internet.
+    const response = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -19,22 +22,19 @@ loginForm.addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (response.ok) {
-      // ¡Éxito! Guardamos el token en la memoria del navegador
       localStorage.setItem("token", result.token);
 
       document.getElementById("loginMessage").style.color = "#4cd137";
       document.getElementById("loginMessage").innerText =
         "Login correcto. Redirigiendo...";
 
-      // Te mandamos al dashboard después de 1 segundo
       setTimeout(() => {
         window.location.href = "dashboard.html";
       }, 1000);
     } else {
-      // Error (contraseña mal, etc)
       document.getElementById("loginMessage").style.color = "red";
       document.getElementById("loginMessage").innerText =
-        result.message || "Credenciales incorrectas";
+        result.msg || "Credenciales incorrectas";
     }
   } catch (error) {
     console.error("Error de conexión:", error);
