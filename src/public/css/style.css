@@ -105,3 +105,52 @@ button:hover {
   font-weight: bold;
   color: #4cd137; /* Verde para éxito */
 }
+
+/* --- Agrega esto a tu style.css --- */
+
+/* 1. Agregamos 'position: relative' al header para que sea la referencia */
+header {
+  position: relative;
+  /* Asegúrate de mantener tus otros estilos de header aquí */
+  background-color: #16213e;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Estilos para el botón de Login */
+.login-btn {
+  position: absolute; /* Lo sacamos del flujo normal */
+  right: 2rem; /* Lo pegamos a la derecha */
+  top: 50%; /* Lo centramos verticalmente */
+  transform: translateY(-50%); /* Ajuste fino del centrado */
+
+  background-color: #e94560;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none; /* Quitamos la línea de enlace */
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #c0354e;
+}
+
+/* Ajuste para móviles: Que el botón no se monte sobre el título */
+@media (max-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 1rem;
+  }
+
+  .login-btn {
+    position: static; /* En móvil deja de flotar */
+    transform: none;
+    align-self: center; /* Se centra */
+  }
+}
