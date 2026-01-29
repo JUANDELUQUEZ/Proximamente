@@ -1,0 +1,151 @@
+/* Reutilizamos fuentes y reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9; /* Fondo claro para admin (más limpio para leer datos) */
+  color: #333;
+}
+
+/* Barra de Navegación */
+nav {
+  background-color: #2c3e50;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav button {
+  background-color: #e74c3c;
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+nav button:hover {
+  background-color: #c0392b;
+}
+
+/* Contenedor de la tabla */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h3 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Tabla de Datos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden; /* Para recortar las esquinas */
+}
+
+thead {
+  background-color: #34495e;
+  color: white;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Efecto cebra para leer mejor */
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+  background-color: #eaf2f8; /* Resaltado al pasar el mouse */
+}
+
+/* Botones de Acción dentro de la tabla */
+td button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* Botón "Marcar Contactado" (Azul/Verde) */
+td button:first-child {
+  background-color: #27ae60;
+}
+
+td button:first-child:hover {
+  background-color: #219150;
+}
+
+/* Botón "Eliminar" (Rojo) */
+td button:last-child {
+  background-color: #c0392b;
+}
+
+td button:last-child:hover {
+  background-color: #a93226;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none; /* Oculta encabezados en móvil */
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+  }
+
+  td::before {
+    content: attr(data-label); /* Truco para mostrar etiquetas en móvil */
+    font-weight: bold;
+    color: #2c3e50;
+  }
+}

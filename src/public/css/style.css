@@ -1,0 +1,107 @@
+/* Reset básico para limpiar márgenes */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #1a1a2e; /* Fondo oscuro */
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Encabezado */
+header {
+  background-color: #16213e;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  color: #0f3460;
+  color: #e94560; /* Color de acento (Rojizo/Rosado) */
+  letter-spacing: 2px;
+}
+
+/* Contenedor Principal */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Tarjeta del Formulario */
+#contacto {
+  background-color: #16213e;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#contacto h2 {
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+/* Inputs y Textarea */
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: #0f3460;
+  border: 1px solid #1a1a2e;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #e94560; /* Resaltado al escribir */
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Botón de envío */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #e94560;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition:
+    transform 0.2s,
+    background-color 0.3s;
+}
+
+button:hover {
+  background-color: #c0354e;
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Mensaje de respuesta */
+#formResponse {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #4cd137; /* Verde para éxito */
+}
