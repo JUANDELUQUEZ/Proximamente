@@ -11,7 +11,7 @@ requestForm.addEventListener("submit", async (e) => {
 
   try {
     const response = await fetch("/api/requests", {
-      // Ajusta la ruta según el backend
+    
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
