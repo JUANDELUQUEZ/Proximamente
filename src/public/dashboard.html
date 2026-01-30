@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <nav>
+      <h2>Admin Dashboard</h2>
+      <button onclick="logout()">Cerrar Sesión</button>
+    </nav>
+
+    <div class="container">
+      <h3>Solicitudes Recibidas</h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Estatus</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="requestsTable"></tbody>
+      </table>
+    </div>
+
+    <script src="js/admin.js"></script>
+  </body>
+</html>
