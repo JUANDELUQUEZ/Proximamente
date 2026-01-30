@@ -1,42 +1,77 @@
-// Al cargar la página, verificamos si hay token
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   if (!token) {
-    window.location.href = "index.html"; // Redirigir si no hay login
+    window.location.href = "login.html"; // Corregido para ir al login
+  } else {
+    loadRequests();
   }
-  loadRequests();
 });
 
 async function loadRequests() {
-  const response = await fetch("/api/requests", {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
-  const requests = await response.json();
+  try {
+    const response = await fetch("/api/requests", {
+      headers: { "x-auth-token": localStorage.getItem("token") }, // Headers simplificados
+    });
 
-  const tableBody = document.getElementById("requestsTable");
-  tableBody.innerHTML = "";
+    if (response.status === 401) {
+      logout(); // Si el token expiró, sacar al usuario
+      return;
+    }
 
-  requests.forEach((req) => {
-    tableBody.innerHTML += `
+    const requests = await response.json();
+    const tableBody = document.getElementById("requestsTable");
+    tableBody.innerHTML = "";
+
+    requests.forEach((req) => {
+      // Definimos color según status
+      let statusColor = req.estatus === "Contactado" ? "green" : "orange";
+
+      tableBody.innerHTML += `
             <tr>
                 <td>${req.nombre}</td>
                 <td>${req.email}</td>
-                <td>${req.status}</td>
+                <td style="color:${statusColor}; font-weight:bold;">${req.estatus}</td>
                 <td>
                     <button onclick="updateStatus('${req._id}')">Marcar Contactado</button>
                     <button onclick="deleteRequest('${req._id}')">Eliminar</button>
                 </td>
             </tr>
         `;
-  });
+    });
+  } catch (error) {
+    console.error("Error cargando datos:", error);
+  }
+}
+
+// ESTA FUNCIÓN FALTABA
+async function updateStatus(id) {
+  try {
+    await fetch(`/api/requests/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token"), // Header exacto del middleware
+      },
+      body: JSON.stringify({ estatus: "Contactado" }),
+    });
+    loadRequests(); // Recargar la tabla para ver el cambio
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function deleteRequest(id) {
   if (confirm("¿Seguro que quieres eliminarlo?")) {
     await fetch(`/api/requests/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: { "x-auth-token": localStorage.getItem("token") },
     });
-    loadRequests(); // Recargar tabla
+    loadRequests();
   }
+}
+
+// ESTA FUNCIÓN FALTABA
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
 }
