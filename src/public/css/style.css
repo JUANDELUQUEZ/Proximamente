@@ -106,8 +106,6 @@ button:hover {
   color: #4cd137; /* Verde para éxito */
 }
 
-/* --- Agrega esto a tu style.css --- */
-
 /* 1. Agregamos 'position: relative' al header para que sea la referencia */
 header {
   position: relative;

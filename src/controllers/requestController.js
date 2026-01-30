@@ -1,6 +1,6 @@
 const Request = require("../models/Request");
 
-// Crear solicitud (PÚBLICO - Para el formulario de contacto)
+// Crear solicitud (Para el formulario de contacto)
 exports.createRequest = async (req, res) => {
   try {
     const newRequest = new Request(req.body);
@@ -11,7 +11,7 @@ exports.createRequest = async (req, res) => {
   }
 };
 
-// Obtener todas (PRIVADO - Solo admin)
+// Obtener todas (Solo admin)
 exports.getAllRequests = async (req, res) => {
   try {
     const requests = await Request.find().sort({ fecha: -1 });
@@ -21,7 +21,7 @@ exports.getAllRequests = async (req, res) => {
   }
 };
 
-// Actualizar estatus (PRIVADO - Solo admin)
+// Actualizar estatus (Solo admin)
 exports.updateStatus = async (req, res) => {
   try {
     const { estatus } = req.body;
@@ -37,7 +37,7 @@ exports.updateStatus = async (req, res) => {
   }
 };
 
-// Eliminar solicitud (PRIVADO - Solo admin)
+// Eliminar solicitud (Solo admin)
 exports.deleteRequest = async (req, res) => {
   try {
     let request = await Request.findById(req.params.id);

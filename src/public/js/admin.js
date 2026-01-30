@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   if (!token) {
-    window.location.href = "login.html"; // Corregido para ir al login
+    window.location.href = "login.html";
   } else {
     loadRequests();
   }
@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadRequests() {
   try {
     const response = await fetch("/api/requests", {
-      headers: { "x-auth-token": localStorage.getItem("token") }, // Headers simplificados
+      headers: { "x-auth-token": localStorage.getItem("token") },
     });
 
     if (response.status === 401) {
-      logout(); // Si el token expiró, sacar al usuario
+      logout();
       return;
     }
 
@@ -23,7 +23,6 @@ async function loadRequests() {
     tableBody.innerHTML = "";
 
     requests.forEach((req) => {
-      // Definimos color según status
       let statusColor = req.estatus === "Contactado" ? "green" : "orange";
 
       tableBody.innerHTML += `
@@ -43,18 +42,17 @@ async function loadRequests() {
   }
 }
 
-// ESTA FUNCIÓN FALTABA
 async function updateStatus(id) {
   try {
     await fetch(`/api/requests/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "x-auth-token": localStorage.getItem("token"), // Header exacto del middleware
+        "x-auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ estatus: "Contactado" }),
     });
-    loadRequests(); // Recargar la tabla para ver el cambio
+    loadRequests();
   } catch (error) {
     console.error(error);
   }
@@ -70,7 +68,6 @@ async function deleteRequest(id) {
   }
 }
 
-// ESTA FUNCIÓN FALTABA
 function logout() {
   localStorage.removeItem("token");
   window.location.href = "login.html";

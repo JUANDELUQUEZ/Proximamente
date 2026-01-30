@@ -1,12 +1,12 @@
 /* public/css/admin.css */
 
-/* DEFINICIÓN DE VARIABLES (Tu nueva paleta) */
+/* (nueva paleta) */
 :root {
-  --color1: #e6e8e3; /* Fondo Principal (Lightest) */
-  --color2: #d7dacf; /* Fondo Secundario / Hover (Light Gray) */
-  --color3: #bec3bc; /* Bordes / Detalles (Medium Gray) */
-  --color4: #dc7d00; /* Acentos / Encabezados (Darker Teal-Gray) */
-  --color5: #19127c; /* Textos / Navbar / Elementos Fuertes (Darkest Slate) */
+  --color1: #e6e8e3; /* Fondo Principal */
+  --color2: #d7dacf; /* Fondo Secundario / */
+  --color3: #bec3bc; /* Bordes / Detalles */
+  --color4: #dc7d00; /* Acentos / Encabezados */
+  --color5: #19127c; /* Textos / Elementos Fuertes */
 
   --white: #ffffff;
 }
@@ -21,12 +21,12 @@
 
 body {
   background-color: var(--color1);
-  color: var(--color5); /* Texto oscuro para legibilidad */
+  color: var(--color5);
 }
 
 /* Barra de Navegación */
 nav {
-  background-color: var(--color5); /* El tono más oscuro para la barra */
+  background-color: var(--color5);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -37,7 +37,7 @@ nav {
 
 /* Botón de Cerrar Sesión (Navbar) */
 nav button {
-  background-color: var(--color4); /* Un tono más claro que la barra */
+  background-color: var(--color4);
   border: none;
   padding: 8px 15px;
   color: var(--white);
@@ -50,7 +50,7 @@ nav button {
 }
 
 nav button:hover {
-  background-color: var(--color3); /* Al pasar el mouse se aclara */
+  background-color: var(--color3);
   color: var(--color5);
 }
 
@@ -80,7 +80,7 @@ table {
 }
 
 thead {
-  background-color: var(--color4); /* Encabezados en tono medio-oscuro */
+  background-color: var(--color4);
   color: var(--white);
 }
 
@@ -88,18 +88,16 @@ th,
 td {
   padding: 15px;
   text-align: left;
-  border-bottom: 1px solid var(--color3); /* Bordes sutiles */
+  border-bottom: 1px solid var(--color3);
 }
 
 /* Efecto cebra para las filas */
 tbody tr:nth-child(even) {
-  background-color: var(
-    --color1
-  ); /* Usamos el color de fondo para intercalar */
+  background-color: var(--color1);
 }
 
 tbody tr:hover {
-  background-color: var(--color2); /* Resaltado suave al pasar el mouse */
+  background-color: var(--color2);
   transition: background-color 0.2s;
 }
 
@@ -117,7 +115,7 @@ td button {
 
 /* Botón "Marcar Contactado" */
 td button:first-child {
-  background-color: var(--color4); /* Tono Slate medio */
+  background-color: var(--color4);
 }
 
 td button:first-child:hover {
@@ -126,11 +124,11 @@ td button:first-child:hover {
 
 /* Botón "Eliminar" */
 td button:last-child {
-  background-color: var(--color5); /* Tono más oscuro y serio para eliminar */
+  background-color: var(--color5);
 }
 
 td button:last-child:hover {
-  background-color: #4a545a; /* Un tono manual un poco más oscuro para hover de eliminar */
+  background-color: #4a545a;
 }
 
 /* Responsividad para móviles */
